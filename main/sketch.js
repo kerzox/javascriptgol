@@ -38,12 +38,12 @@ function setup() {
 	let center_checkbox = select("#centerCheck");
 	center_checkbox.mousePressed(enablecenter)
 
-	survival_input = createInput('');
+	survival_input = createInput();
 	survival_input.changed(survivalParse);
 	survival_input.parent("survivalInput");
 	survival_input.class("form-control");
-
-	birth_input = createInput('');
+	
+	birth_input = createInput('', 'int');
 	birth_input.changed(birthParse);
 	birth_input.parent("birthInput");
 	birth_input.class("form-control");
@@ -52,11 +52,15 @@ function setup() {
 	order_slider.parent(orderslider);
 	order_slider.style('width', '100%');
 
+	res_slider = createSlider(5, 35, 25);
+	res_slider.parent("resolutionSlider");
+	res_slider.style('width', '100%');
+
 	var checkboxes = document.getElementsByTagName('input');
 
 	for (var i=0; i<checkboxes.length; i++)  {
 	if (checkboxes[i].type == 'checkbox')   {
-		checkboxes[i].checked = false;
+			checkboxes[i].checked = false;
 		}
 	}
 
@@ -99,6 +103,8 @@ function draw() {
 	background(255);
 	order = order_slider.value();
 	document.getElementById("ordernum").innerHTML = order;
+	resolution = res_slider.value();
+	document.getElementById("resorder").innerHTML = resolution
 
 	if (runMoore) {
 		for (let x = 0; x < rows; x++) {

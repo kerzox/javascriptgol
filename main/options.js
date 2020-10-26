@@ -6,7 +6,7 @@ let order = 1;
 let state;
 let rows;
 let cols;
-let resolution = 25;
+let resolution = 10;
 
 let Survival = [2, 3];
 let Birth = [3];
@@ -16,6 +16,8 @@ let runVon = false;
 
 function survivalParse() {
     const numbers = this.value();
+    this.value("");
+
     if (numbers.includes("...")) {
         var split = numbers.split("...");
 
@@ -30,6 +32,21 @@ function survivalParse() {
                 {
                     Survival.push(num);
                 }
+            }
+        }
+        else {
+        }
+    }
+    else {
+        var split = numbers.split(" ");
+        var split_numbers;
+        for (var i = 0; i < split.length; i++) {
+            if (split_numbers = parseInt(split[i]))
+            {
+                Survival.push(split_numbers);
+            }
+            else {
+
             }
         }
     }
@@ -51,6 +68,17 @@ function birthParse() {
                     Birth.push(num);
                 }
             }
+        }
+        else {
+            var split = numbers.split(" ");
+            var split_numbers;
+            for (var i = 0; i < split.length; i++) {
+                if (split_numbers = parseInt(split[i]))
+                {
+                    Birth.push(split_numbers);
+                }
+            }
+            
         }
     }
 }
