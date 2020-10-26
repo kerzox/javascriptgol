@@ -53,6 +53,7 @@ function survivalParse() {
 }
 function birthParse() {
     const numbers = this.value();
+    this.value("");
     if (numbers.includes("...")) {
         var split = numbers.split("...");
 
@@ -69,16 +70,19 @@ function birthParse() {
                 }
             }
         }
-        else {
-            var split = numbers.split(" ");
-            var split_numbers;
-            for (var i = 0; i < split.length; i++) {
-                if (split_numbers = parseInt(split[i]))
-                {
-                    Birth.push(split_numbers);
-                }
+    }
+    else {
+        var split = numbers.split(" ");
+        var split_numbers;
+        for (var i = 0; i < split.length; i++) {
+            if (split_numbers = parseInt(split[i]))
+            {
+                Birth.push(split_numbers);
             }
-            
+            else {
+
+            }
         }
     }
+    console.log(Birth);
 }
