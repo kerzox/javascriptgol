@@ -18,8 +18,64 @@
 	<script src="main/game.js"></script>
 </head>
 <body>
-
-	<div id="gol"></div>
-
+	<div class="container">
+		<div class="row">
+		  <div class="col-sm-4">
+			<div class="menu">
+				<div class="row">
+					<div class="container p-3" style="background-color: rgb(29, 29, 29);">
+						<span>Neighbourhood type</span>
+						<hr style="background-color: white;">
+						<div class="row">
+							<div class="col">
+								<div id="moore">Moore</div>
+							</div>
+							<div class="col">
+								<div id="von">Vonneumann</div>
+							</div>
+						</div>
+						<br>
+						<input type="checkbox" id="centerCheck"> <span>Count center?</span>
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="container p-3" style="background-color: rgb(29, 29, 29);">
+						<span>Neighbourhood Order</span>
+						<hr style="background-color: white;">
+						<div class="row">
+							<div class="col-12">
+								<div id="orderslider"></div>
+							</div>
+							<div class="col">
+								<span>Current Order: </span><span id="ordernum">1</span>
+							</div>
+						</div>
+						<br>
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="container p-3" style="background-color: rgb(29, 29, 29);">
+						<span>Rules</span>
+						<hr style="background-color: white;">
+						<div class="row">
+							<div class="col-12">
+								
+							</div>
+							<div class="col">
+								
+							</div>
+						</div>
+						<br>
+					</div>
+				</div>
+			</div>
+		  </div>
+		  <div class="col-sm">
+			<div id="gol"></div>
+		  </div>
+		</div>
+	  </div>
 </body>
 </html>
