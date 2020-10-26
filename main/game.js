@@ -1,17 +1,30 @@
-
-
-function nextGeneration(type) {
+function nextGeneration(type, old) {
+    storeGeneration(old);
     buffer = make2DArray(rows, cols);
 	for (let x = 0; x < rows; x++) {
 		for (let y = 0; y < cols; y++) {
             var cell = universe[x][y];
             var PREV_STATE = cell.state;
-            var neighbours = getNeighbours(type,universe, x, y);
+            var neighbours = getNeighbours(type, universe, x, y);
             buffer[x][y] = new Cell(x * resolution, y * resolution, resolution, cellState(neighbours, PREV_STATE));
         }
     }
     universe = buffer;
     return universe;
+}
+
+function storeGeneration(old) {
+    if (firstGhost) {
+        stored[1] = old;
+        stored[2] = old;
+        stored[0] = old;
+        firstGhost = false;
+    }
+    else {
+        stored[2] = stored[1];
+        stored[1] = stored[0];
+        stored[0] = old;
+    }
 }
 
 function cellState(neighbours, PREV_STATE) {

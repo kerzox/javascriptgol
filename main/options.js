@@ -14,6 +14,10 @@ let Birth = [3];
 let runMoore = false;
 let runVon = false;
 
+var stored = {};
+let ghost = false;
+let firstGhost = true;
+
 function survivalParse() {
     const numbers = this.value();
     this.value("");

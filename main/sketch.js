@@ -38,6 +38,9 @@ function setup() {
 	let center_checkbox = select("#centerCheck");
 	center_checkbox.mousePressed(enablecenter)
 
+	let ghost_checkbox = select("#ghostCheck");
+	ghost_checkbox.mousePressed(enableghost)
+
 	survival_input = createInput();
 	survival_input.changed(survivalParse);
 	survival_input.parent("survivalInput");
@@ -68,6 +71,9 @@ function setup() {
 	rows = floor(width / 10);
 	cols = floor(height / 10);
 	universe = make2DArray(rows, cols);
+
+	stored[0] = make2DArray(rows, cols);
+
 	for (let x = 0; x < rows; x++) {
 		for (let y = 0; y < cols; y++) {
 			let rnd = floor(random(2));
@@ -76,6 +82,14 @@ function setup() {
 			universe[x][y] = new Cell(x * resolution, y * resolution, resolution, state);
 		}
 	}
+}
+
+function enableghost() {
+	if (this.checked()) {
+		ghost = false;
+	  } else {
+		ghost = true;
+	  }
 }
 
 function enablecenter() {
@@ -100,7 +114,8 @@ function vonneumann() {
 
 
 function draw() {
-	background(255);
+	frameRate(15);
+	background('#f5f5f5');
 	order = order_slider.value();
 	document.getElementById("ordernum").innerHTML = order;
 	resolution = res_slider.value();
@@ -110,9 +125,20 @@ function draw() {
 		for (let x = 0; x < rows; x++) {
 			for (let y = 0; y < cols; y++) {
 				universe[x][y].show();
+				if (ghost) {
+					if (stored[0][x][y].state == 1 && universe[x][y].state != 1) {
+					stored[0][x][y].ghost("gen1");
+					}
+					if (stored[1][x][y].state == 1 && stored[0][x][y].state != 1 && universe[x][y].state != 1) {
+						stored[1][x][y].ghost("gen2");
+					}
+					if (stored[2][x][y].state == 1 && stored[1][x][y].state != 1 && stored[0][x][y].state != 1 && universe[x][y].state != 1) {
+						stored[2][x][y].ghost("gen3");
+					}
+				}
 			}
 		}
-		nextGeneration("moore");
+		nextGeneration("moore", universe);
 	}
 	if(runVon) {
 		//do this
@@ -121,6 +147,6 @@ function draw() {
 				universe[x][y].show();
 			}
 		}
-		nextGeneration("von");
+		nextGeneration("von", universe);
 	}
 }
