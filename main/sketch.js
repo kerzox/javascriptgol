@@ -1,16 +1,3 @@
-const ALIVE = 1;
-const DEAD = 0;
-
-let center = false;
-let order = 1;
-let state;
-let rows;
-let cols;
-let resolution = 10;
-
-let runMoore = false;
-let runVon = false;
-
 function make2DArray(rows, cols) {
 	var arr = new Array(rows);
 	for (var i = 0; i < arr.length; i++) {
@@ -21,9 +8,8 @@ function make2DArray(rows, cols) {
 
 function resetCanvas() {
 	clear();
-	background(0);
-	rows = floor(width / 10);
-	cols = floor(height / 10);
+	rows = floor(width / resolution);
+	cols = floor(height / resolution);
 	universe = make2DArray(rows, cols);
 	for (let x = 0; x < rows; x++) {
 		for (let y = 0; y < cols; y++) {
@@ -36,8 +22,12 @@ function resetCanvas() {
 }
 
 function setup() {
-	var golCanvas = createCanvas(701, 501);
-	golCanvas.parent("gol");
+	background(255);
+    var canvasDiv = document.getElementById('gol');
+	var width = canvasDiv.offsetWidth;
+
+    var sketchCanvas = createCanvas(width, width);
+    sketchCanvas.parent("gol");
 
 	let type_moore_test = select("#moore");
 	type_moore_test.mousePressed(moore);
@@ -47,6 +37,16 @@ function setup() {
 
 	let center_checkbox = select("#centerCheck");
 	center_checkbox.mousePressed(enablecenter)
+
+	survival_input = createInput('');
+	survival_input.changed(survivalParse);
+	survival_input.parent("survivalInput");
+	survival_input.class("form-control");
+
+	birth_input = createInput('');
+	birth_input.changed(birthParse);
+	birth_input.parent("birthInput");
+	birth_input.class("form-control");
 
 	order_slider = createSlider(1, 10, 1);
 	order_slider.parent(orderslider);
@@ -96,7 +96,7 @@ function vonneumann() {
 
 
 function draw() {
-
+	background(255);
 	order = order_slider.value();
 	document.getElementById("ordernum").innerHTML = order;
 

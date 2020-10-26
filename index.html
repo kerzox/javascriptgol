@@ -16,33 +16,31 @@
 	<script src="main/sketch.js"></script>
 	<script src="main/cell.js"></script>
 	<script src="main/game.js"></script>
+	<script src="main/options.js"></script>
 </head>
 <body>
-	<div class="container">
+	<div class="container p-5" style="background-color: #E76F51">
 		<div class="row">
-		  <div class="col-sm-4">
-			<div class="menu">
+		  <div class="col-3">
+			<div class="menu p-2">
 				<div class="row">
-					<div class="container p-3" style="background-color: rgb(29, 29, 29);">
-						<span>Neighbourhood type</span>
-						<hr style="background-color: white;">
+					<div class="container p-3">
+						<span>Neighbourhood type</span> 
+						<hr class="solid background_white">
 						<div class="row">
 							<div class="col">
 								<div id="moore">Moore</div>
-							</div>
-							<div class="col">
 								<div id="von">Vonneumann</div>
 							</div>
 						</div>
 						<br>
-						<input type="checkbox" id="centerCheck"> <span>Count center?</span>
 					</div>
 				</div>
 				<br>
 				<div class="row">
-					<div class="container p-3" style="background-color: rgb(29, 29, 29);">
+					<div class="container p-3">
 						<span>Neighbourhood Order</span>
-						<hr style="background-color: white;">
+						<hr class="solid background_white">
 						<div class="row">
 							<div class="col-12">
 								<div id="orderslider"></div>
@@ -56,15 +54,28 @@
 				</div>
 				<br>
 				<div class="row">
-					<div class="container p-3" style="background-color: rgb(29, 29, 29);">
+					<div class="container p-3">
 						<span>Rules</span>
-						<hr style="background-color: white;">
+						<hr class="solid background_white">
 						<div class="row">
 							<div class="col-12">
-								
+								<input type="checkbox" id="centerCheck"> <span>Count the center as a neighour</span>
 							</div>
 							<div class="col">
 								
+							</div>
+						</div>
+						<br>
+						<span>Alive neighbours</span>
+						<div class="row">
+							<div class="col">
+								<div id="survivalInput"></div>
+							</div>
+						</div>
+						<span>Dead neighbours</span>
+						<div class="row">
+							<div class="col">
+								<div id="birthInput"></div>
 							</div>
 						</div>
 						<br>
@@ -72,8 +83,10 @@
 				</div>
 			</div>
 		  </div>
-		  <div class="col-sm">
-			<div id="gol"></div>
+		  <div class="col-9">
+			<div id="word">
+				<div id="gol"></div>
+			</div>
 		  </div>
 		</div>
 	  </div>

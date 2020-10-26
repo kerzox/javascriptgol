@@ -1,3 +1,6 @@
+//let Survival = [34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58];
+//let Birth = [34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45];
+
 function nextGeneration(type) {
     buffer = make2DArray(rows, cols);
 	for (let x = 0; x < rows; x++) {
@@ -14,11 +17,15 @@ function nextGeneration(type) {
 
 function cellState(neighbours, PREV_STATE) {
     var STATE = DEAD;
-    if (PREV_STATE == ALIVE && (neighbours == 2 || neighbours == 3)) {
-        STATE = ALIVE;
+    for (let i = 0; i <= Survival.length; i++) {
+        if (PREV_STATE == ALIVE && neighbours == Survival[i]) {
+            STATE = ALIVE;
+        }
     }
-    else if (PREV_STATE == DEAD && neighbours == 3) {
-        STATE = ALIVE;
+    for (let i = 0; i <= Birth.length; i++) {
+        if (PREV_STATE == DEAD && neighbours == Birth[i]) {
+            STATE = ALIVE;
+        }
     }
     return STATE;
 }
